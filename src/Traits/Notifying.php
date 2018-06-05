@@ -2,51 +2,36 @@
 namespace NotificationBuilder\Traits;
 
 use NotificationBuilder\Models\Action;
+use NotificationBuilder\Notification;
+use Illuminate\Support\Collection;
 
 trait Notifying
 {
     public $model = __CLASS__;
-    public $modelRoute;
+    public $route;
+    public $notifications;
+    
+    public function __construct()
+    {
+        $this->route = config('NotificationBuilder.modelRoutes.'.__CLASS__);
+    }
 
     public function notifying($action)
     {
         $act = Action::findByModel($this->model, $action);
         if ($act) {
+            $this->notifications = new Collection;
             if ($act->active) {
                 foreach ($act->notificationTemplates as $template) {
-                    $notifications[] = $this->prepare($template);
+                    $notification = new Notification($template, $this);
+                    $notification->prepare();
+                    $this->notifications->push($notification);
                 }
-                return $notifications[1]['message'];
+                // dump the notifications collection for now
+                $this->notifications->dump();
+                exit;
             }
         }
         return "action $action not registered! for $this->model";
-    }
-
-    public function prepare($template)
-    {
-        $title = $this->replacePlaceholders($template->title);
-        $message =  $this->replacePlaceholders($template->message);
-        $type = $template->type;
-        return [
-            'title' => $title,
-            'message' => $message,
-            'type' => $type
-        ];
-    }
-
-    public function replacePlaceholders($text)
-    {
-        $res = explode(' ', $text);
-        foreach ($res as $word) {
-            if (strpos($word, ':') !== false) {
-                $replace = substr($word, strpos($word, ":")+strlen(':'));
-                $text = str_replace($word, ($this->$replace), $text);
-            }
-            if (strpos($word, '@') !== false) {
-                $replace = substr($word, strpos($word, "@")+strlen('@'));
-                $text = str_replace($word, "<a href=".($this->id).">".($this->$replace)."</a>", $text);
-            }
-        }
-        return $text;
     }
 }

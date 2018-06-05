@@ -17,7 +17,8 @@ class NotificationBuilderActionsTableSeeder extends Seeder
         /**
          * [
          *    'model' => 'User', // model name
-         *    'name' => 'Create', // lowercase with Capital Starting Char action name (if more than one word then CamelCase)
+         *    'name' => 'Create', // lowercase with Capital Starting Char
+         *     action name (if more than one word then CamelCase)
          *    'description' => 'your discription', // optional
          *    'active' => true // boolean (default true) optional
          * ]
@@ -26,7 +27,7 @@ class NotificationBuilderActionsTableSeeder extends Seeder
             [
                 'model' => 'App\User',
                 'name' => 'Create',
-                'description' => 'Triggered when creating new user', 
+                'description' => 'Triggered when creating new user',
                 'active' => true,
             ],
         ];

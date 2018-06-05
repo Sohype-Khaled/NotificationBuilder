@@ -39,14 +39,14 @@ class CreateNotificationBuilderTables extends Migration
         Schema::create('methods', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
-            $table->enum('is_active',['y','n'])->default('n');
+            $table->enum('is_active', ['y','n'])->default('n');
         });
 
         Schema::create('notifications_templates', function (Blueprint $table) {
             $table->increments('id');
             $table->longText('title')->nullable();
             $table->longText('message')->nullable();
-            $table->enum('type',['danger','success','info','warrning'])->default('info');
+            $table->enum('type', ['danger','success','info','warrning'])->default('info');
             $table->timestamps();
         });
 
@@ -54,9 +54,6 @@ class CreateNotificationBuilderTables extends Migration
             $table->integer('action_id')->nullable();
             $table->integer('template_id')->nullable();
         });
-
-
-
     }
 
     /**

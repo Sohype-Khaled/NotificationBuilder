@@ -5,4 +5,7 @@ return [
     'observers' => [
         App\User::class,
     ],
+    'modelRoutes' => [
+        'App\User' => 'users.show',
+    ]
 ];

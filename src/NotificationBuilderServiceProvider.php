@@ -28,24 +28,22 @@ class NotificationBuilderServiceProvider extends ServiceProvider
 
     private function registerPublishables()
     {
-         $basePath = dirname(__DIR__);
+        $basePath = dirname(__DIR__);
 
-         $Publishables = [
+        $Publishables = [
             'config'    =>    [
-                "$basePath/src/config" => config_path('config'),
-
+                "$basePath/src/config" => config_path(),
             ],
             'migrations'    =>    [
                 "$basePath/src/database/migrations" => database_path('migrations'),
-
             ],
             'seeds' => [
                 "$basePath/src/database/seeds" => database_path('seeds')
             ],
-         ];
+        ];
 
-         foreach ($Publishables as $group => $paths) {
-             $this->publishes($paths,$group);
-         }
+        foreach ($Publishables as $group => $paths) {
+            $this->publishes($paths, $group);
+        }
     }
 }
