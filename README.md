@@ -7,7 +7,7 @@ feel free to contribute/improve the code
 
 please note that this package is in development process.
 
-#Usage
+# Usage
 1. vendor publish
     ```
         php artisan vendor:publish 
