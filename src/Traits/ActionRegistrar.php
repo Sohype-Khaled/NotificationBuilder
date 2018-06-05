@@ -1,6 +1,7 @@
 <?php
 
 namespace NotificationBuilder;
+
 use NotificationBuilder\Models\Action;
 
 class ActionRegistrar

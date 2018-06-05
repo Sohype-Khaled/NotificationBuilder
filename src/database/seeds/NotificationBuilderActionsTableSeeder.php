@@ -24,8 +24,8 @@ class NotificationBuilderActionsTableSeeder extends Seeder
          */
         $actions = [
             [
-                'model' => 'App\User', 
-                'name' => 'Create', 
+                'model' => 'App\User',
+                'name' => 'Create',
                 'description' => 'Triggered when creating new user', 
                 'active' => true,
             ],

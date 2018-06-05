@@ -8,9 +8,9 @@ trait Notifying
     public $model = __CLASS__;
     public $modelRoute;
 
-    public function Notifying($action)
+    public function notifying($action)
     {
-        $act = Action::findByModel($this->model,$action);
+        $act = Action::findByModel($this->model, $action);
         if ($act) {
             if ($act->active) {
                 foreach ($act->notificationTemplates as $template) {
@@ -36,15 +36,15 @@ trait Notifying
 
     public function replacePlaceholders($text)
     {
-        $res = explode(' ',$text);
+        $res = explode(' ', $text);
         foreach ($res as $word) {
             if (strpos($word, ':') !== false) {
-                $replace = substr($word, strpos($word,":")+strlen(':'));
-                $text = str_replace($word,($this->$replace),$text);
+                $replace = substr($word, strpos($word, ":")+strlen(':'));
+                $text = str_replace($word, ($this->$replace), $text);
             }
             if (strpos($word, '@') !== false) {
-                $replace = substr($word, strpos($word,"@")+strlen('@'));
-                $text = str_replace($word,"<a href=".($this->id).">".($this->$replace)."</a>",$text);
+                $replace = substr($word, strpos($word, "@")+strlen('@'));
+                $text = str_replace($word, "<a href=".($this->id).">".($this->$replace)."</a>", $text);
             }
         }
         return $text;

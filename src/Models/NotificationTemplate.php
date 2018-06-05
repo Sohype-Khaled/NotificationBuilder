@@ -13,6 +13,11 @@ class NotificationTemplate extends Model
 
     public function actions()
     {
-        return $this->belongsToMany('NotificationBuilder\Models\Action','action_notifications_template','template_id','action_id');
+        return $this->belongsToMany(
+            'NotificationBuilder\Models\Action',
+            'action_notifications_template',
+            'template_id',
+            'action_id'
+        );
     }
 }
