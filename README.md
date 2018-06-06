@@ -11,7 +11,7 @@ please note that this package is in development process.
 1. add this line  in `psr-4` in `autoload` in composer.json 
 
 
-        "NotificationBuilder\\":"path-to-package/NotificationBuilder"
+        ` "NotificationBuilder\\":"path-to-package/NotificationBuilder" `
 
 
     then run `composer update`
@@ -20,7 +20,7 @@ please note that this package is in development process.
 2. vendor publish
 
 
-        php artisan vendor:publish 
+        `php artisan vendor:publish`
 
 
 3. In order to get notification from models actions : 
@@ -29,10 +29,10 @@ please note that this package is in development process.
     * use notifying trait in the model
 
 
-            use NotificationBuilder\Traits\Notifying;
+            `use NotificationBuilder\Traits\Notifying;`
 
 
     * use the function notifying in your code
 
 
-            $model->notifying('action-name');
+            `$model->notifying('action-name');`
