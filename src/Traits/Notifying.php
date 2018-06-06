@@ -14,15 +14,15 @@ trait Notifying
     public function __construct()
     {
         $this->route = config('NotificationBuilder.modelRoutes.'.__CLASS__);
+        $this->notifications = new Collection;
     }
 
     public function notifying($action)
     {
         $act = Action::findByModel($this->model, $action);
         if ($act) {
-            $this->notifications = new Collection;
             if ($act->active) {
-                foreach ($act->notificationTemplates as $template) {
+                foreach ($act->templates as $template) {
                     $notification = new Notification($template, $this);
                     $notification->prepare();
                     $this->notifications->push($notification);

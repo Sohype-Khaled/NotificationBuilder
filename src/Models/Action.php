@@ -19,7 +19,17 @@ class Action extends Model
         return false;
     }
 
-    public function notificationTemplates()
+    public function addTemplate(array $attributes = [])
+    {
+        $this->templates()->create($attributes);
+    }
+
+    public function addManyTemplates(array $attributes = [])
+    {
+        $this->templates()->createMany($attributes);
+    }
+
+    public function templates()
     {
         return $this->belongsToMany(
             'NotificationBuilder\Models\NotificationTemplate',

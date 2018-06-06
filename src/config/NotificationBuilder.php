@@ -1,10 +1,11 @@
 <?php
 
 return [
-    // models namespace
-    'observers' => [
-        App\User::class,
-    ],
+    
+    'locale' => ['en','ar','fr'],
+
+    'fallback_locale' => 'en',
+
     'modelRoutes' => [
         'App\User' => 'users.show',
     ]
